@@ -3534,6 +3534,11 @@ mlfi_eom(SMFICTX *ctx)
 						arc_set_cv(afc->mctx_arcmsg,
 						           cv);
 					}
+					// fix: semicolon is missing for some fields
+					if(strlen(arcf_dstring_get(afc->mctx_tmpstr))>0 &&
+					   strcmp(arcf_dstring_get(afc->mctx_tmpstr)+strlen(arcf_dstring_get(afc->mctx_tmpstr))-2, "; ")!=0) {
+					    arcf_dstring_printf(afc->mctx_tmpstr, "; ");
+					}
 
 					arcf_dstring_printf(afc->mctx_tmpstr,
 					                    "%s=%s",
